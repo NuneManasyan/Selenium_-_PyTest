@@ -1,0 +1,8 @@
+selenium
+pycodestyle
+pytest
+allure-pytest
+allure-python-commons
+fake
+Faker
+virtualenv
