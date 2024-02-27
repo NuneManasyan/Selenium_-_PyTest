@@ -6,7 +6,7 @@ import os
 
 @pytest.fixture(scope="session")
 def driver():
-    try:   # TODO, add logging
+    try:   
         driver = webdriver.Chrome()
         logging.info("'Chrome' browser was opened.")
         driver.maximize_window()      

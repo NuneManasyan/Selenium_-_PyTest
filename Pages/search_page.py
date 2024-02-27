@@ -15,7 +15,8 @@ class Search(Helper):
             self.move_to_element(self.search_box_loc)
             query = self.find_and_send_keys(self.search_box_loc, existing_course, timeout=30)            
             query.send_keys(Keys.ENTER)            
-            self.wait_for_element_in_dom(self.course_search_result_loc, timeout=100)
+            found_existing_results = self.wait_for_element_in_dom(self.course_search_result_loc, timeout=100)
+            return found_existing_results.text
         except Exception as e:             
             logging.error(f"An error occurred while searching an existing course: {e}")
             self.make_screenshot("failed_search_existing_course_screen.png")

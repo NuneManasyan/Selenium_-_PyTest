@@ -1,44 +1,85 @@
 # Selenium_-_Pytest
 # Main test scenario:
 
-1. Open Chrome browser, navigate to "https://courses.ultimateqa.com/collections", click "SIGN IN", go to the "Create a new account" page.
+1. Open the Chrome browser, navigate to "https://courses.ultimateqa.com/collections", click "SIGN IN", go to the 
+   "Create a new account" page.
 2. Create fake credentials and register.
 3. Enter an existing course name ("selenium") in the "Search box" and validate that there are any results. 
 4. Enter a non-existing course name ("millenium") in the "Search box"  and validate that "No results were found" message was displayed. 
 
 
-
-# Test Cases:
-
 ## Pages
-### home_page.py              - go_to_create_a_new_account -           
+### home_page.py              
+                              - go_to_create_a_new_account: Clicks on the "Sign In" button and navigates the user to 
+                                'Create a new account'page for registration.         
+### register_page.py          
+                              - save_fake_credentials_in_json: Saves fake credentials in "cred.json" file, which were originated in 
+                                "data.py" file .
+                              - registration: Registers the user with credentials taken from "data.py" file.
+                              - find_user_credentials_in_homepage: Ensures that user credentials are displayed on the homepage after
+                                successful register.
+### search_page.py            
+                              - search_an_existing_course: Navigates to the search box and enters the "existing course" query.
+                              - search_a_non_existing_course: Navigates to the search box and enters the "non_existing course" query.
 
-
-                              - alert_popup - clicks on the "Alert" button, switches to the popped up dialog box,
-                                 writes pop-up text to the provided file
-                              - hide_element - clicks on the "Hide" button, gets the value of the given attribute 
-                                 and writes it to the provided file
-                              - mouse_hover - moves to the "Mouse Hover" button, clicks on the "Top" option,
-                                 which automatically scrolls up to the top of the page
-                              - get_footer_text - navigates to the provided footer element and writes its text to the provided file
-### login.py                  - sign_in - scrolls up to the top of the page, clicks on the "SIGN IN" button, enters provided invalid credentials,
-                                 writes validation message text to the provided file                               
-### google_search.py          - search_text - opens the provided URL, enters given query in the "Search box", gets text from results, 
-                                 parses count of results and writes it to the provided file 
-
-## Tests  
-### test_runner.py            - includes necessary function calls, durations time of the project run
-
-## common_functions.py        - set_up_logging: Configures the logging settings for the test framework.
-                              - browser: Initializes the Chrome browser.
-                              - navigate_to_url: Navigates to the given URL, maximizes the window, and handles page load timeouts.
-                              - wait_for_element: Waits for an element until it is located using the provided value.
+## Helper_functions
+### helpers.py                
+                              - open_url: Opens the browser, having the URL.
+                              - wait_for_element_in_dom: Waits for an element until it is located using the provided value.
                               - wait_until_element_visible: Waits until the given element is visible.
-                              - wait_until_element_clickable: Waits until the given element is clickable.
+                              - find_element_and_click: Finds an element and clicks on it.
+                              - find_element_by_id: Finds an element by ID.
                               - move_to_element: Scrolls to the provided element on the page.
-                              - write_to_file: Writes data to the "live_coding_text.txt" file.
+                              - find_and_send_keys: Finds an element and enters a query.
                               - make_screenshot: Takes screenshots.
-                              - close_browser: Quits the browser instance.
-                              - delete_files: Deletes specified files after confirmation. 
-## data.py                    - keeps data for the test
-## my_config.py               - keeps url, quiry data                                                                                                                 
+                              - write_to_json: Writes given data to the provided JSON file.
+                              - read_from_json: Reads data from the given JSON file.
+
+## Test_data
+### data.py
+                              - Creates fake credentials for register, keeps necessary queries.
+
+## my_config.py               
+                              - Keeps the URL, JSON file name and JSON file path.   
+
+## conftest.py               
+                              - driver: Opens the "Chrome" browser, maximizes the window and closes it after
+                                the session.
+                              - pytest_configure: Configures logging.          
+                              
+## Test Cases:
+### test_1_search_an_existing_course.py
+                             - The script is designed to perform a search for an existing course on a web application. 
+                               The test involves the following steps:
+
+                              1. Navigate to the Home Page:
+                                 Opens the specified URL.
+                                 Clicks on the link to create a new account on the home page.
+
+                              2. Register a New Account:
+                                 Fills in registration details with fake credentials.
+                                 Saves the fake credentials in a JSON file.
+                                 Completes the registration process.
+
+                              3. Search for an Existing Course:
+                                 Performs a search for an existing course using the search functionality.
+                                 Captures the search results.
+
+                              4. Assertion:
+                                 Asserts that there is at least one existing course in the search results.
+
+### test_2_search_a_non_existing_course.py
+                              - The script is designed to perform a search for a non-existing course on a web application. 
+                                The test involves the following steps:
+
+                              1. Search for an Non-existing Course:
+                                 Performs a search for a non-existing course using the search functionality.
+                                 Captures the search results.
+
+                              2. Assertion:
+                                 Asserts that the search result is "No results were found."
+
+
+## requirements.txt           
+                              - includes required libraries for running the project
+                                                                                                               

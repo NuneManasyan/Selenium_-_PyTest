@@ -8,7 +8,6 @@ import logging
 
 
 
-
 def test_search_an_existing_course(driver):
     
     logging.info("'Test_1' was initiated.")
