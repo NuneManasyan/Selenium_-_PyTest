@@ -1,4 +1,4 @@
-# Selenium_-_Pytest
+# Selenium_-_PyTest
 # Main test scenario:
 
 1. Open the Chrome browser, navigate to "https://courses.ultimateqa.com/collections", click "SIGN IN", go to the 
